@@ -512,7 +512,7 @@ var app = (function () {
     const { console: console_1 } = globals;
     const file$6 = "src/components/DogCard.svelte";
 
-    // (26:2) {:else}
+    // (44:2) {:else}
     function create_else_block(ctx) {
     	let div;
     	let h40;
@@ -535,11 +535,11 @@ var app = (function () {
     			h41 = element("h4");
     			t3 = text("Group: ");
     			t4 = text(t4_value);
-    			add_location(h40, file$6, 27, 6, 629);
-    			add_location(h41, file$6, 28, 6, 676);
+    			add_location(h40, file$6, 45, 6, 1275);
+    			add_location(h41, file$6, 46, 6, 1322);
     			attr_dev(div, "id", "info-not-favorite");
     			attr_dev(div, "class", "svelte-ofyw3g");
-    			add_location(div, file$6, 26, 4, 594);
+    			add_location(div, file$6, 44, 4, 1240);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -564,14 +564,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(26:2) {:else}",
+    		source: "(44:2) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (20:2) {#if favorite}
+    // (38:2) {#if favorite}
     function create_if_block_4(ctx) {
     	let div;
     	let h40;
@@ -585,6 +585,8 @@ var app = (function () {
     	let t4;
     	let t5;
     	let p;
+    	let t6;
+    	let p_id_value;
 
     	const block = {
     		c: function create() {
@@ -598,13 +600,15 @@ var app = (function () {
     			t4 = text(t4_value);
     			t5 = space();
     			p = element("p");
-    			p.textContent = "-";
-    			add_location(h40, file$6, 21, 6, 463);
-    			add_location(h41, file$6, 22, 6, 510);
-    			add_location(p, file$6, 23, 6, 560);
+    			t6 = text("-");
+    			add_location(h40, file$6, 39, 6, 1097);
+    			add_location(h41, file$6, 40, 6, 1144);
+    			attr_dev(p, "id", p_id_value = /*dog*/ ctx[0].id);
+    			attr_dev(p, "class", "svelte-ofyw3g");
+    			add_location(p, file$6, 41, 6, 1194);
     			attr_dev(div, "id", "info-favorite");
     			attr_dev(div, "class", "svelte-ofyw3g");
-    			add_location(div, file$6, 20, 4, 432);
+    			add_location(div, file$6, 38, 4, 1066);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -617,10 +621,15 @@ var app = (function () {
     			append_dev(h41, t4);
     			append_dev(div, t5);
     			append_dev(div, p);
+    			append_dev(p, t6);
     		},
     		p: function update(ctx, dirty) {
     			if (dirty & /*dog*/ 1 && t1_value !== (t1_value = (/*dog*/ ctx[0].bred_for || "None") + "")) set_data_dev(t1, t1_value);
     			if (dirty & /*dog*/ 1 && t4_value !== (t4_value = (/*dog*/ ctx[0].breed_group || "None") + "")) set_data_dev(t4, t4_value);
+
+    			if (dirty & /*dog*/ 1 && p_id_value !== (p_id_value = /*dog*/ ctx[0].id)) {
+    				attr_dev(p, "id", p_id_value);
+    			}
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
@@ -631,16 +640,18 @@ var app = (function () {
     		block,
     		id: create_if_block_4.name,
     		type: "if",
-    		source: "(20:2) {#if favorite}",
+    		source: "(38:2) {#if favorite}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (33:2) {#if favorite}
+    // (51:2) {#if favorite}
     function create_if_block_3(ctx) {
     	let button0;
+    	let t0;
+    	let button0_id_value;
     	let t1;
     	let button1;
     	let mounted;
@@ -649,15 +660,18 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			button0 = element("button");
-    			button0.textContent = "See More";
+    			t0 = text("See More");
     			t1 = space();
     			button1 = element("button");
     			button1.textContent = "Delete from Favorites";
-    			add_location(button0, file$6, 33, 4, 779);
-    			add_location(button1, file$6, 34, 4, 829);
+    			attr_dev(button0, "id", button0_id_value = "seeMore-button" + /*dog*/ ctx[0].id);
+    			attr_dev(button0, "class", "svelte-ofyw3g");
+    			add_location(button0, file$6, 51, 4, 1425);
+    			add_location(button1, file$6, 52, 4, 1506);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button0, anchor);
+    			append_dev(button0, t0);
     			insert_dev(target, t1, anchor);
     			insert_dev(target, button1, anchor);
 
@@ -681,6 +695,10 @@ var app = (function () {
     		},
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
+
+    			if (dirty & /*dog*/ 1 && button0_id_value !== (button0_id_value = "seeMore-button" + /*dog*/ ctx[0].id)) {
+    				attr_dev(button0, "id", button0_id_value);
+    			}
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(button0);
@@ -695,14 +713,14 @@ var app = (function () {
     		block,
     		id: create_if_block_3.name,
     		type: "if",
-    		source: "(33:2) {#if favorite}",
+    		source: "(51:2) {#if favorite}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (37:2) {#if filtered}
+    // (55:2) {#if filtered}
     function create_if_block_2(ctx) {
     	let button;
     	let mounted;
@@ -713,7 +731,7 @@ var app = (function () {
     			button = element("button");
     			button.textContent = "Add to Favorites";
     			attr_dev(button, "onclick", "this.disabled=true");
-    			add_location(button, file$6, 37, 4, 933);
+    			add_location(button, file$6, 55, 4, 1610);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -747,14 +765,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2.name,
     		type: "if",
-    		source: "(37:2) {#if filtered}",
+    		source: "(55:2) {#if filtered}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (42:2) {#if favorite == false}
+    // (60:2) {#if favorite == false}
     function create_if_block(ctx) {
     	let if_block_anchor;
     	let if_block = /*filtered*/ ctx[2] == false && create_if_block_1(ctx);
@@ -792,14 +810,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(42:2) {#if favorite == false}",
+    		source: "(60:2) {#if favorite == false}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (43:4) {#if filtered == false}
+    // (61:4) {#if filtered == false}
     function create_if_block_1(ctx) {
     	let button;
     	let mounted;
@@ -810,7 +828,7 @@ var app = (function () {
     			button = element("button");
     			button.textContent = "Add to Favorites";
     			attr_dev(button, "onclick", "this.disabled=true");
-    			add_location(button, file$6, 43, 6, 1107);
+    			add_location(button, file$6, 61, 6, 1784);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -844,7 +862,7 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(43:4) {#if filtered == false}",
+    		source: "(61:4) {#if filtered == false}",
     		ctx
     	});
 
@@ -885,9 +903,9 @@ var app = (function () {
     			attr_dev(img, "id", "image");
     			attr_dev(img, "alt", "dog");
     			attr_dev(img, "class", "svelte-ofyw3g");
-    			add_location(img, file$6, 17, 2, 366);
+    			add_location(img, file$6, 35, 2, 1000);
     			attr_dev(main, "class", "svelte-ofyw3g");
-    			add_location(main, file$6, 16, 0, 357);
+    			add_location(main, file$6, 34, 0, 991);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -987,6 +1005,19 @@ var app = (function () {
 
     	const moreInfo = () => {
     		console.log("see more button clicked");
+    		var id = "seeMore-button" + dog.id;
+    		var life = dog.life_span || "None";
+    		var origin = dog.origin || "None";
+    		var temperament = dog.temperament || "None";
+
+    		if (document.getElementById(dog.id).innerHTML == "-") {
+    			console.log("Lo encontro");
+    			document.getElementById(dog.id).innerHTML = "Life Span: " + life + ";\n Origin: " + origin + ";\n Temperament: " + temperament;
+    			document.getElementById(id).innerHTML = "See Less";
+    		} else {
+    			document.getElementById(dog.id).innerHTML = "-";
+    			document.getElementById(id).innerHTML = "See More";
+    		}
     	};
 
     	const removeFromFavorites = dog => {
@@ -1093,14 +1124,14 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (14:2) {#each dogs as dog}
+    // (42:2) {#each dogs as dog}
     function create_each_block(ctx) {
     	let dogcard;
     	let current;
 
     	dogcard = new DogCard({
     			props: {
-    				favorite: false,
+    				favorite: true,
     				filtered: false,
     				dog: /*dog*/ ctx[1]
     			},
@@ -1134,7 +1165,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(14:2) {#each dogs as dog}",
+    		source: "(42:2) {#each dogs as dog}",
     		ctx
     	});
 
@@ -1169,8 +1200,8 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			add_location(h1, file$5, 12, 2, 324);
-    			add_location(main, file$5, 11, 0, 315);
+    			add_location(h1, file$5, 40, 2, 740);
+    			add_location(main, file$5, 39, 0, 731);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1255,10 +1286,38 @@ var app = (function () {
     	validate_slots("Dogs", slots, []);
 
     	let dogs = [
-    		{ bred_for: "hola", breed_group: "hola" },
-    		{ bred_for: "chao", breed_group: "chao" },
-    		{ bred_for: "wena", breed_group: "wena" },
-    		{ bred_for: "jijij", breed_group: "jijiji" }
+    		{
+    			id: 1,
+    			bred_for: "hola",
+    			breed_group: "hola",
+    			life_span: 12,
+    			origin: "USA",
+    			temperament: "very angry"
+    		},
+    		{
+    			id: 2,
+    			bred_for: "chao",
+    			breed_group: "chao",
+    			life_span: 21,
+    			origin: "Australa",
+    			temperament: "very happy"
+    		},
+    		{
+    			id: 3,
+    			bred_for: "wena",
+    			breed_group: "wena",
+    			life_span: 2,
+    			origin: "USA",
+    			temperament: "funny"
+    		},
+    		{
+    			id: 4,
+    			bred_for: "jijij",
+    			breed_group: "jijiji",
+    			life_span: 10,
+    			origin: "Chile",
+    			temperament: "sassy"
+    		}
     	];
 
     	const writable_props = [];

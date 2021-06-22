@@ -5,6 +5,24 @@
 
   const moreInfo = () => {
     console.log("see more button clicked");
+    var id = "seeMore-button" + dog.id;
+    var life = dog.life_span || "None";
+    var origin = dog.origin || "None";
+    var temperament = dog.temperament || "None";
+    if (document.getElementById(dog.id).innerHTML == "-") {
+      console.log("Lo encontro");
+      document.getElementById(dog.id).innerHTML =
+        "Life Span: " +
+        life +
+        ";\n Origin: " +
+        origin +
+        ";\n Temperament: " +
+        temperament;
+      document.getElementById(id).innerHTML = "See Less";
+    } else {
+      document.getElementById(dog.id).innerHTML = "-";
+      document.getElementById(id).innerHTML = "See More";
+    }
   };
   const removeFromFavorites = (dog) => {
     console.log("remove from favorites button clicked");
@@ -21,7 +39,7 @@
     <div id="info-favorite">
       <h4>Breed: {dog.bred_for || "None"}</h4>
       <h4>Group: {dog.breed_group || "None"}</h4>
-      <p>-</p>
+      <p id={dog.id}>-</p>
     </div>
   {:else}
     <div id="info-not-favorite">
@@ -31,7 +49,7 @@
   {/if}
   <!-- buttons -->
   {#if favorite}
-    <button on:click={moreInfo}>See More</button>
+    <button id={"seeMore-button" + dog.id} on:click={moreInfo}>See More</button>
     <button on:click={removeFromFavorites(dog)}>Delete from Favorites</button>
   {/if}
   {#if filtered}
