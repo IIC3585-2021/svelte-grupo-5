@@ -1,14 +1,14 @@
 import { writable } from 'svelte/store'
 
 var allDogs;
-var filters =  ["Toy", "Working", "Terrier", "Mixed", "Herding", "Non-Sporting", "Hound"]
+var allFilters =  ["Toy", "Working", "Terrier", "Mixed", "Herding", "Non-Sporting", "Hound"]
 
 
 export const loading = writable(true)
 export const dogs = writable(allDogs)
 export const applied = writable([])
 export const favorites = writable([])
-export const filters = writable(filters)
+export const filters = writable(allFilters)
 
 
 
