@@ -1,8 +1,11 @@
 import { writable } from 'svelte/store'
-import { fetchDogBreeds } from './fetch'
 
-const allDogs = fetchDogBreeds()
-console.log(allDogs)
+var allDogs;
+
+export const loading = writable(true)
+export const dogs = writable(allDogs)
+
+
 const exampleDogs = [
       {
         id: 1,
@@ -37,4 +40,15 @@ const exampleDogs = [
         temperament: "sassy",
       },
     ];
-export const dogs = writable(exampleDogs)
+
+fetch('https://api.thedogapi.com/v1/breeds')
+.then((response) => response.json())
+.then((data) => {
+    allDogs = data
+    // DEMO PURPOSES --------------
+    dogs.set(exampleDogs)
+    // REAL FETCH -----------------
+    //dogs.set(data);
+    loading.set(false)
+})
+
