@@ -1,9 +1,10 @@
 <script>
-  //   export let name;
+  import DogCard from "./DogCard.svelte";
 </script>
 
 <main>
   <h1>Dogs List</h1>
+  <DogCard />
 </main>
 
 <style>
