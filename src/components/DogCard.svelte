@@ -1,7 +1,10 @@
 <script>
+  import { get } from 'svelte/store'
+  import { dogs, favoriteCount } from '../store.js'
+
   export let dog;
   export let favorite;
-  export let filtered;
+  export let extra;
 
   const moreInfo = () => {
     console.log("see more button clicked");
@@ -25,17 +28,33 @@
     }
   };
   const removeFromFavorites = (dog) => {
-    console.log("remove from favorites button clicked");
+    var oldCount = get(favoriteCount)
+    favoriteCount.set(oldCount - 1)
+    var newDogs = get(dogs)
+    newDogs.map(option => {
+       if (option.id === dog.id){
+         option.isFavorite = false
+       }
+     })
+    dogs.set(newDogs)
   };
   const addToFavorites = (dog) => {
-    console.log("add to favorites button clicked");
+    var oldCount = get(favoriteCount)
+    favoriteCount.set(oldCount + 1)
+    var newDogs = get(dogs)
+    newDogs.map(option => {
+       if (option.id === dog.id){
+         option.isFavorite = true
+       }
+     })
+    dogs.set(newDogs)
   };
 </script>
 
 <main>
   <img id="image" alt="dog" />
   <!-- info -->
-  {#if favorite}
+  {#if extra}
     <div id="info-favorite">
       <h4>Breed: {dog.bred_for || "None"}</h4>
       <h4>Group: {dog.breed_group || "None"}</h4>
@@ -48,21 +67,12 @@
     </div>
   {/if}
   <!-- buttons -->
-  {#if favorite}
+  {#if extra}
     <button id={"seeMore-button" + dog.id} on:click={moreInfo}>See More</button>
     <button on:click={removeFromFavorites(dog)}>Delete from Favorites</button>
-  {/if}
-  {#if filtered}
-    <button on:click={addToFavorites(dog)} onclick="this.disabled=true"
-      >Add to Favorites</button
-    >
-  {/if}
-  {#if favorite == false}
-    {#if filtered == false}
-      <button on:click={addToFavorites(dog)} onclick="this.disabled=true"
-        >Add to Favorites</button
-      >
-    {/if}
+  {:else}
+    <button on:click={addToFavorites(dog)} disabled={favorite} 
+    onclick="this.disabled=true">Add to Favorites</button>
   {/if}
 </main>
 

@@ -1,15 +1,21 @@
-import { writable } from 'svelte/store'
+import { writable, get } from 'svelte/store'
 
-var allDogs;
+var allDogs = []
 var allFilters =  ["Toy", "Working", "Terrier", "Mixed", "Herding", "Non-Sporting", "Hound"]
 
 
 export const loading = writable(true)
 export const dogs = writable(allDogs)
 export const applied = writable([])
-export const favorites = writable([])
 export const filters = writable(allFilters)
+export const favoriteCount = writable(0)
 
+
+applied.subscribe(newFilters => {
+    var oldDogs = get(dogs)
+    var updatedDogs = oldDogs.map(dog => dog.isFiltered = newFilters.includes(dog.breed_group))
+    dogs.set(updatedDogs)
+  })
 
 
 const exampleDogs = [
@@ -52,9 +58,22 @@ fetch('https://api.thedogapi.com/v1/breeds')
 .then((data) => {
     allDogs = data
     // DEMO PURPOSES --------------
-    dogs.set(exampleDogs)
+    //dogs.set(extendDogObject(exampleDogs))
     // REAL FETCH -----------------
-    //dogs.set(data);
+    dogs.set(extendDogObject(data));
     loading.set(false)
 })
+
+const extendDogObject = function(previousDogs){
+    var newList = []
+    previousDogs.forEach(element => {
+        var extendedElement = element
+        extendedElement["isFavorite"] = false
+        extendedElement["isFiltered"] = false
+        newList.push(extendedElement)
+        }
+    );
+    return newList
+
+}
 
