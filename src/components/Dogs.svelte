@@ -13,7 +13,7 @@
         Loading Dogs...
     {:else if $dogs != undefined}
       {#each $dogs as dog}
-      <DogCard favorite={true} filtered={false} {dog} />
+      <DogCard favorite={false} filtered={false} {dog} />
       {/each}
     {/if}
     <!-- <h1>Dogs List</h1>
@@ -26,7 +26,6 @@
     {:catch error}
       <p style="color: red">{error.message}</p>
     {/await} -->
-          
 </main>
 
 <style>
