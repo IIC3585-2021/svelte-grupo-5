@@ -40,7 +40,7 @@
 <main>
   <h1>Dogs List</h1>
   {#each dogs as dog}
-    <DogCard favorite={true} filtered={false} {dog} />
+    <DogCard favorite={false} filtered={false} {dog} />
   {/each}
 </main>
 
