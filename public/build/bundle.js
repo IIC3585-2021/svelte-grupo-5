@@ -584,18 +584,26 @@ var app = (function () {
     }
 
     var allDogs = [];
+    var allFilters =  [{name: "Toy", applied: false }, {name: "Working", applied: false}, {name:"Terrier", applied: false}, {name:"Mixed", applied: false}, {name: "Herding", applied: false}, {name: "Non-Sporting", applied: false}, {name:"Hound", applied: false}];
+
 
 
     const loading = writable(true);
     const dogs = writable(allDogs);
-    const applied = writable([]);
+    const filters = writable(allFilters);
     const favoriteCount = writable(0);
 
 
-    applied.subscribe(newFilters => {
+    filters.subscribe(newFilters => {
+        var selectedBreeds = [];
+        newFilters.forEach(filter => {
+            if(filter.applied == true){
+                selectedBreeds.push(filter.name);
+            }
+        });
         var oldDogs = get_store_value(dogs);
-        var updatedDogs = oldDogs.map(dog => dog.isFiltered = newFilters.includes(dog.breed_group));
-        dogs.set(updatedDogs);
+        oldDogs.map(dog => dog.isFiltered = selectedBreeds.includes(dog.breed_group));
+        dogs.set(oldDogs);
       });
 
     fetch('https://api.thedogapi.com/v1/breeds')
@@ -603,7 +611,7 @@ var app = (function () {
     .then((data) => {
         allDogs = data;
         // DEMO PURPOSES --------------
-        //dogs.set(extendDogObject(exampleDogs))
+        // dogs.set(extendDogObject(exampleDogs))
         // REAL FETCH -----------------
         dogs.set(extendDogObject(data));
         loading.set(false);
@@ -822,7 +830,7 @@ var app = (function () {
     }
 
     // (70:2) {#if extra}
-    function create_if_block$3(ctx) {
+    function create_if_block$4(ctx) {
     	let button0;
     	let t0;
     	let button0_id_value;
@@ -885,7 +893,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$3.name,
+    		id: create_if_block$4.name,
     		type: "if",
     		source: "(70:2) {#if extra}",
     		ctx
@@ -909,7 +917,7 @@ var app = (function () {
     	let if_block0 = current_block_type(ctx);
 
     	function select_block_type_1(ctx, dirty) {
-    		if (/*extra*/ ctx[2]) return create_if_block$3;
+    		if (/*extra*/ ctx[2]) return create_if_block$4;
     		return create_else_block;
     	}
 
@@ -1235,7 +1243,7 @@ var app = (function () {
     }
 
     // (12:2) {#if $loading === true}
-    function create_if_block$2(ctx) {
+    function create_if_block$3(ctx) {
     	let t;
 
     	const block = {
@@ -1255,7 +1263,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$2.name,
+    		id: create_if_block$3.name,
     		type: "if",
     		source: "(12:2) {#if $loading === true}",
     		ctx
@@ -1324,7 +1332,7 @@ var app = (function () {
     	let current_block_type_index;
     	let if_block;
     	let current;
-    	const if_block_creators = [create_if_block$2, create_if_block_1$2];
+    	const if_block_creators = [create_if_block$3, create_if_block_1$2];
     	const if_blocks = [];
 
     	function select_block_type(ctx, dirty) {
@@ -1479,13 +1487,15 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (14:2) {#each filters as filter}
+    // (19:2) {#each $filters as filter}
     function create_each_block$3(ctx) {
     	let div;
-    	let t0_value = /*filter*/ ctx[2] + "";
+    	let t0_value = /*filter*/ ctx[2].name + "";
     	let t0;
     	let t1;
     	let button;
+    	let t2;
+    	let button_disabled_value;
     	let t3;
     	let mounted;
     	let dispose;
@@ -1496,25 +1506,42 @@ var app = (function () {
     			t0 = text(t0_value);
     			t1 = space();
     			button = element("button");
-    			button.textContent = "Add Filter";
+    			t2 = text("Add Filter");
     			t3 = space();
-    			add_location(button, file$4, 16, 6, 370);
-    			add_location(div, file$4, 14, 4, 343);
+    			button.disabled = button_disabled_value = /*filter*/ ctx[2].applied;
+    			add_location(button, file$4, 21, 6, 537);
+    			add_location(div, file$4, 19, 4, 505);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
     			append_dev(div, t0);
     			append_dev(div, t1);
     			append_dev(div, button);
+    			append_dev(button, t2);
     			append_dev(div, t3);
 
     			if (!mounted) {
-    				dispose = listen_dev(button, "click", /*addFilter*/ ctx[1](/*filter*/ ctx[2]), false, false, false);
+    				dispose = listen_dev(
+    					button,
+    					"click",
+    					function () {
+    						if (is_function(/*addFilter*/ ctx[1](/*filter*/ ctx[2]))) /*addFilter*/ ctx[1](/*filter*/ ctx[2]).apply(this, arguments);
+    					},
+    					false,
+    					false,
+    					false
+    				);
+
     				mounted = true;
     			}
     		},
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
+    			if (dirty & /*$filters*/ 1 && t0_value !== (t0_value = /*filter*/ ctx[2].name + "")) set_data_dev(t0, t0_value);
+
+    			if (dirty & /*$filters*/ 1 && button_disabled_value !== (button_disabled_value = /*filter*/ ctx[2].applied)) {
+    				prop_dev(button, "disabled", button_disabled_value);
+    			}
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
@@ -1527,7 +1554,7 @@ var app = (function () {
     		block,
     		id: create_each_block$3.name,
     		type: "each",
-    		source: "(14:2) {#each filters as filter}",
+    		source: "(19:2) {#each $filters as filter}",
     		ctx
     	});
 
@@ -1538,7 +1565,7 @@ var app = (function () {
     	let main;
     	let h1;
     	let t1;
-    	let each_value = /*filters*/ ctx[0];
+    	let each_value = /*$filters*/ ctx[0];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -1557,8 +1584,8 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			add_location(h1, file$4, 12, 2, 282);
-    			add_location(main, file$4, 11, 0, 273);
+    			add_location(h1, file$4, 17, 2, 443);
+    			add_location(main, file$4, 16, 0, 434);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1573,8 +1600,8 @@ var app = (function () {
     			}
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*addFilter, filters*/ 3) {
-    				each_value = /*filters*/ ctx[0];
+    			if (dirty & /*$filters, addFilter*/ 3) {
+    				each_value = /*$filters*/ ctx[0];
     				validate_each_argument(each_value);
     				let i;
 
@@ -1617,12 +1644,23 @@ var app = (function () {
     }
 
     function instance$4($$self, $$props, $$invalidate) {
+    	let $filters;
+    	validate_store(filters, "filters");
+    	component_subscribe($$self, filters, $$value => $$invalidate(0, $filters = $$value));
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Filters", slots, []);
-    	let filters = ["1", "2"];
 
     	const addFilter = filter => {
     		console.log("add filter from button");
+    		let filtersObjects = get_store_value(filters);
+
+    		filtersObjects.map(filterObject => {
+    			if (filterObject.name === filter.name) {
+    				filterObject.applied = true;
+    			}
+    		});
+
+    		filters.set(filtersObjects);
     	};
 
     	const writable_props = [];
@@ -1631,17 +1669,8 @@ var app = (function () {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1$1.warn(`<Filters> was created with unknown prop '${key}'`);
     	});
 
-    	$$self.$capture_state = () => ({ each, filters, addFilter });
-
-    	$$self.$inject_state = $$props => {
-    		if ("filters" in $$props) $$invalidate(0, filters = $$props.filters);
-    	};
-
-    	if ($$props && "$$inject" in $$props) {
-    		$$self.$inject_state($$props.$$inject);
-    	}
-
-    	return [filters, addFilter];
+    	$$self.$capture_state = () => ({ each, get: get_store_value, filters, addFilter, $filters });
+    	return [$filters, addFilter];
     }
 
     class Filters extends SvelteComponentDev {
@@ -1669,10 +1698,10 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (15:2) {#each appliedFilters as filter}
-    function create_each_block$2(ctx) {
+    // (31:4) {#if filter.applied === true}
+    function create_if_block$2(ctx) {
     	let div;
-    	let t0_value = /*filter*/ ctx[3] + "";
+    	let t0_value = /*filter*/ ctx[3].name + "";
     	let t0;
     	let t1;
     	let button;
@@ -1686,8 +1715,8 @@ var app = (function () {
     			t1 = space();
     			button = element("button");
     			button.textContent = "Delete";
-    			add_location(button, file$3, 17, 6, 455);
-    			add_location(div, file$3, 15, 4, 428);
+    			add_location(button, file$3, 33, 8, 843);
+    			add_location(div, file$3, 31, 6, 807);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -1696,12 +1725,23 @@ var app = (function () {
     			append_dev(div, button);
 
     			if (!mounted) {
-    				dispose = listen_dev(button, "click", /*deleteFilter*/ ctx[1](/*filter*/ ctx[3]), false, false, false);
+    				dispose = listen_dev(
+    					button,
+    					"click",
+    					function () {
+    						if (is_function(/*deleteFilter*/ ctx[1](/*filter*/ ctx[3]))) /*deleteFilter*/ ctx[1](/*filter*/ ctx[3]).apply(this, arguments);
+    					},
+    					false,
+    					false,
+    					false
+    				);
+
     				mounted = true;
     			}
     		},
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
+    			if (dirty & /*$filters*/ 1 && t0_value !== (t0_value = /*filter*/ ctx[3].name + "")) set_data_dev(t0, t0_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
@@ -1712,9 +1752,54 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
+    		id: create_if_block$2.name,
+    		type: "if",
+    		source: "(31:4) {#if filter.applied === true}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (30:2) {#each $filters as filter}
+    function create_each_block$2(ctx) {
+    	let if_block_anchor;
+    	let if_block = /*filter*/ ctx[3].applied === true && create_if_block$2(ctx);
+
+    	const block = {
+    		c: function create() {
+    			if (if_block) if_block.c();
+    			if_block_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			if (if_block) if_block.m(target, anchor);
+    			insert_dev(target, if_block_anchor, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (/*filter*/ ctx[3].applied === true) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block$2(ctx);
+    					if_block.c();
+    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (if_block) if_block.d(detaching);
+    			if (detaching) detach_dev(if_block_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
     		id: create_each_block$2.name,
     		type: "each",
-    		source: "(15:2) {#each appliedFilters as filter}",
+    		source: "(30:2) {#each $filters as filter}",
     		ctx
     	});
 
@@ -1729,7 +1814,7 @@ var app = (function () {
     	let button;
     	let mounted;
     	let dispose;
-    	let each_value = /*appliedFilters*/ ctx[0];
+    	let each_value = /*$filters*/ ctx[0];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -1751,9 +1836,9 @@ var app = (function () {
     			t2 = space();
     			button = element("button");
     			button.textContent = "Clear All";
-    			add_location(h1, file$3, 13, 2, 364);
-    			add_location(button, file$3, 20, 2, 534);
-    			add_location(main, file$3, 12, 0, 355);
+    			add_location(h1, file$3, 28, 2, 713);
+    			add_location(button, file$3, 37, 2, 934);
+    			add_location(main, file$3, 27, 0, 704);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1771,13 +1856,13 @@ var app = (function () {
     			append_dev(main, button);
 
     			if (!mounted) {
-    				dispose = listen_dev(button, "click", /*clearFilters*/ ctx[2](), false, false, false);
+    				dispose = listen_dev(button, "click", /*clearFilters*/ ctx[2], false, false, false);
     				mounted = true;
     			}
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*deleteFilter, appliedFilters*/ 3) {
-    				each_value = /*appliedFilters*/ ctx[0];
+    			if (dirty & /*deleteFilter, $filters*/ 3) {
+    				each_value = /*$filters*/ ctx[0];
     				validate_each_argument(each_value);
     				let i;
 
@@ -1822,16 +1907,35 @@ var app = (function () {
     }
 
     function instance$3($$self, $$props, $$invalidate) {
+    	let $filters;
+    	validate_store(filters, "filters");
+    	component_subscribe($$self, filters, $$value => $$invalidate(0, $filters = $$value));
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Applied", slots, []);
-    	let appliedFilters = ["1", "2"];
 
     	const deleteFilter = filter => {
     		console.log("delete filter from button");
+    		let filtersObjects = get_store_value(filters);
+
+    		filtersObjects.map(filterObject => {
+    			if (filterObject.name === filter.name) {
+    				filterObject.applied = false;
+    			}
+    		});
+
+    		filters.set(filtersObjects);
     	};
 
     	const clearFilters = () => {
     		console.log("clear filters from button");
+    		applied.set([]);
+    		let filtersObjects = get_store_value(filters);
+
+    		filtersObjects.map(filterObject => {
+    			filterObject.applied = false;
+    		});
+
+    		filters.set(filtersObjects);
     	};
 
     	const writable_props = [];
@@ -1842,20 +1946,14 @@ var app = (function () {
 
     	$$self.$capture_state = () => ({
     		each,
-    		appliedFilters,
+    		filters,
+    		get: get_store_value,
     		deleteFilter,
-    		clearFilters
+    		clearFilters,
+    		$filters
     	});
 
-    	$$self.$inject_state = $$props => {
-    		if ("appliedFilters" in $$props) $$invalidate(0, appliedFilters = $$props.appliedFilters);
-    	};
-
-    	if ($$props && "$$inject" in $$props) {
-    		$$self.$inject_state($$props.$$inject);
-    	}
-
-    	return [appliedFilters, deleteFilter, clearFilters];
+    	return [$filters, deleteFilter, clearFilters];
     }
 
     class Applied extends SvelteComponentDev {

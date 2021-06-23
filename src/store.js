@@ -20,8 +20,8 @@ filters.subscribe(newFilters => {
         }
     })
     var oldDogs = get(dogs)
-    var updatedDogs = oldDogs.map(dog => dog.isFiltered = selectedBreeds.includes(dog.breed_group))
-    dogs.set(updatedDogs)
+    oldDogs.map(dog => dog.isFiltered = selectedBreeds.includes(dog.breed_group))
+    dogs.set(oldDogs)
   })
 
 
@@ -45,7 +45,7 @@ const exampleDogs = [
       {
         id: 3,
         bred_for: "wena",
-        breed_group: "wena",
+        breed_group: "Toy",
         life_span: 2,
         origin: "USA",
         temperament: "funny",
@@ -53,7 +53,7 @@ const exampleDogs = [
       {
         id: 4,
         bred_for: "jijij",
-        breed_group: "jijiji",
+        breed_group: "working",
         life_span: 10,
         origin: "Chile",
         temperament: "sassy",
@@ -67,7 +67,7 @@ fetch('https://api.thedogapi.com/v1/breeds')
     // DEMO PURPOSES --------------
     // dogs.set(extendDogObject(exampleDogs))
     // REAL FETCH -----------------
-    //dogs.set(extendDogObject(data));
+    dogs.set(extendDogObject(data));
     loading.set(false)
 })
 
