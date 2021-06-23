@@ -1,12 +1,11 @@
 import { writable } from 'svelte/store'
 
 var allDogs;
-var allFilters =  ["Toy", "Working", "Terrier", "Mixed", "Herding", "Non-Sporting", "Hound"]
+var allFilters =  [{name: "Toy", applied: false }, {name: "Working", applied: false}, {name:"Terrier", applied: false}, {name:"Mixed", applied: false}, {name: "Herding", applied: false}, {name: "Non-Sporting", applied: false}, {name:"Hound", applied: false}]
 
 
 export const loading = writable(true)
 export const dogs = writable(allDogs)
-export const applied = writable([])
 export const favorites = writable([])
 export const filters = writable(allFilters)
 
@@ -52,9 +51,9 @@ fetch('https://api.thedogapi.com/v1/breeds')
 .then((data) => {
     allDogs = data
     // DEMO PURPOSES --------------
-    dogs.set(exampleDogs)
+    //dogs.set(exampleDogs)
     // REAL FETCH -----------------
-    //dogs.set(data);
+    dogs.set(data);
     loading.set(false)
 })
 

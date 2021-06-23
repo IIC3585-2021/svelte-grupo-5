@@ -41,11 +41,11 @@
 <main>
   <h1>Filtered Dogs</h1>
   {#if filteredDogs.length > 0}
-  <div>
-    {#each filteredDogs as dog}
-      <DogCard favorite={false} filtered={true} {dog} />
-    {/each}
-  </div>
+    <div>
+      {#each filteredDogs as dog}
+        <DogCard favorite={false} filtered={true} {dog} />
+      {/each}
+    </div>
   {/if}
 </main>
 
