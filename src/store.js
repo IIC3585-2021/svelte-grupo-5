@@ -64,9 +64,6 @@ fetch('https://api.thedogapi.com/v1/breeds')
 .then((response) => response.json())
 .then((data) => {
     allDogs = data
-    // DEMO PURPOSES --------------
-    // dogs.set(extendDogObject(exampleDogs))
-    // REAL FETCH -----------------
     dogs.set(extendDogObject(data));
     loading.set(false)
 })

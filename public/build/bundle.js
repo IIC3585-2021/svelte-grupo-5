@@ -613,9 +613,6 @@ var app = (function () {
     .then((response) => response.json())
     .then((data) => {
         allDogs = data;
-        // DEMO PURPOSES --------------
-        // dogs.set(extendDogObject(exampleDogs))
-        // REAL FETCH -----------------
         dogs.set(extendDogObject(data));
         loading.set(false);
     });
@@ -2336,7 +2333,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (11:4) {#if $favoriteCount != undefined}
+    // (9:4) {#if $favoriteCount != 0}
     function create_if_block(ctx) {
     	let each_1_anchor;
     	let current;
@@ -2425,14 +2422,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(11:4) {#if $favoriteCount != undefined}",
+    		source: "(9:4) {#if $favoriteCount != 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (13:8) {#if dog.isFavorite == true}
+    // (11:8) {#if dog.isFavorite == true}
     function create_if_block_1(ctx) {
     	let dogcard;
     	let current;
@@ -2479,14 +2476,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(13:8) {#if dog.isFavorite == true}",
+    		source: "(11:8) {#if dog.isFavorite == true}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (12:6) {#each $dogs as dog}
+    // (10:6) {#each $dogs as dog}
     function create_each_block(ctx) {
     	let if_block_anchor;
     	let current;
@@ -2545,7 +2542,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(12:6) {#each $dogs as dog}",
+    		source: "(10:6) {#each $dogs as dog}",
     		ctx
     	});
 
@@ -2561,7 +2558,7 @@ var app = (function () {
     	let t3;
     	let div;
     	let current;
-    	let if_block = /*$favoriteCount*/ ctx[0] != undefined && create_if_block(ctx);
+    	let if_block = /*$favoriteCount*/ ctx[0] != 0 && create_if_block(ctx);
 
     	const block = {
     		c: function create() {
@@ -2573,10 +2570,10 @@ var app = (function () {
     			t3 = space();
     			div = element("div");
     			if (if_block) if_block.c();
-    			add_location(h1, file$1, 8, 2, 204);
+    			add_location(h1, file$1, 6, 2, 124);
     			attr_dev(div, "class", "svelte-1put6l5");
-    			add_location(div, file$1, 9, 2, 253);
-    			add_location(main, file$1, 7, 0, 195);
+    			add_location(div, file$1, 7, 2, 173);
+    			add_location(main, file$1, 5, 0, 115);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2595,7 +2592,7 @@ var app = (function () {
     		p: function update(ctx, [dirty]) {
     			if (!current || dirty & /*$favoriteCount*/ 1) set_data_dev(t1, /*$favoriteCount*/ ctx[0]);
 
-    			if (/*$favoriteCount*/ ctx[0] != undefined) {
+    			if (/*$favoriteCount*/ ctx[0] != 0) {
     				if (if_block) {
     					if_block.p(ctx, dirty);
 
@@ -2660,11 +2657,9 @@ var app = (function () {
     	});
 
     	$$self.$capture_state = () => ({
-    		each,
     		DogCard,
     		favoriteCount,
     		dogs,
-    		get: get_store_value,
     		$favoriteCount,
     		$dogs
     	});
