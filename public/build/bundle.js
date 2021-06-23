@@ -196,6 +196,9 @@ var app = (function () {
     function children(element) {
         return Array.from(element.childNodes);
     }
+    function set_style(node, key, value, important) {
+        node.style.setProperty(key, value, important ? 'important' : '');
+    }
     function custom_event(type, detail) {
         const e = document.createEvent('CustomEvent');
         e.initCustomEvent(type, false, false, detail);
@@ -635,7 +638,7 @@ var app = (function () {
     const { console: console_1$2 } = globals;
     const file$6 = "src/components/DogCard.svelte";
 
-    // (63:2) {:else}
+    // (64:2) {:else}
     function create_else_block_1(ctx) {
     	let div;
     	let h40;
@@ -658,11 +661,10 @@ var app = (function () {
     			h41 = element("h4");
     			t3 = text("Group: ");
     			t4 = text(t4_value);
-    			add_location(h40, file$6, 64, 6, 1725);
-    			add_location(h41, file$6, 65, 6, 1772);
-    			attr_dev(div, "id", "info-not-favorite");
-    			attr_dev(div, "class", "svelte-ofyw3g");
-    			add_location(div, file$6, 63, 4, 1690);
+    			add_location(h40, file$6, 65, 6, 1764);
+    			add_location(h41, file$6, 66, 6, 1811);
+    			attr_dev(div, "class", "svelte-1gar2bx");
+    			add_location(div, file$6, 64, 4, 1752);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -687,14 +689,14 @@ var app = (function () {
     		block,
     		id: create_else_block_1.name,
     		type: "else",
-    		source: "(63:2) {:else}",
+    		source: "(64:2) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (57:2) {#if extra}
+    // (58:2) {#if extra}
     function create_if_block_1$3(ctx) {
     	let div;
     	let h40;
@@ -724,14 +726,12 @@ var app = (function () {
     			t5 = space();
     			p = element("p");
     			t6 = text("-");
-    			add_location(h40, file$6, 58, 6, 1547);
-    			add_location(h41, file$6, 59, 6, 1594);
+    			add_location(h40, file$6, 59, 6, 1609);
+    			add_location(h41, file$6, 60, 6, 1656);
     			attr_dev(p, "id", p_id_value = /*dog*/ ctx[0].id);
-    			attr_dev(p, "class", "svelte-ofyw3g");
-    			add_location(p, file$6, 60, 6, 1644);
-    			attr_dev(div, "id", "info-favorite");
-    			attr_dev(div, "class", "svelte-ofyw3g");
-    			add_location(div, file$6, 57, 4, 1516);
+    			add_location(p, file$6, 61, 6, 1706);
+    			attr_dev(div, "class", "svelte-1gar2bx");
+    			add_location(div, file$6, 58, 4, 1597);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -763,14 +763,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1$3.name,
     		type: "if",
-    		source: "(57:2) {#if extra}",
+    		source: "(58:2) {#if extra}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (73:2) {:else}
+    // (74:2) {:else}
     function create_else_block(ctx) {
     	let button;
     	let t;
@@ -783,7 +783,7 @@ var app = (function () {
     			t = text("Add to Favorites");
     			button.disabled = /*favorite*/ ctx[1];
     			attr_dev(button, "onclick", "this.disabled=true");
-    			add_location(button, file$6, 73, 4, 2042);
+    			add_location(button, file$6, 74, 4, 2081);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -794,7 +794,7 @@ var app = (function () {
     					button,
     					"click",
     					function () {
-    						if (is_function(/*addToFavorites*/ ctx[5](/*dog*/ ctx[0]))) /*addToFavorites*/ ctx[5](/*dog*/ ctx[0]).apply(this, arguments);
+    						if (is_function(/*addToFavorites*/ ctx[6](/*dog*/ ctx[0]))) /*addToFavorites*/ ctx[6](/*dog*/ ctx[0]).apply(this, arguments);
     					},
     					false,
     					false,
@@ -822,14 +822,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(73:2) {:else}",
+    		source: "(74:2) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (70:2) {#if extra}
+    // (71:2) {#if extra}
     function create_if_block$4(ctx) {
     	let button0;
     	let t0;
@@ -847,9 +847,8 @@ var app = (function () {
     			button1 = element("button");
     			button1.textContent = "Delete from Favorites";
     			attr_dev(button0, "id", button0_id_value = "seeMore-button" + /*dog*/ ctx[0].id);
-    			attr_dev(button0, "class", "svelte-ofyw3g");
-    			add_location(button0, file$6, 70, 4, 1872);
-    			add_location(button1, file$6, 71, 4, 1953);
+    			add_location(button0, file$6, 71, 4, 1911);
+    			add_location(button1, file$6, 72, 4, 1992);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button0, anchor);
@@ -859,12 +858,12 @@ var app = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(button0, "click", /*moreInfo*/ ctx[3], false, false, false),
+    					listen_dev(button0, "click", /*moreInfo*/ ctx[4], false, false, false),
     					listen_dev(
     						button1,
     						"click",
     						function () {
-    							if (is_function(/*removeFromFavorites*/ ctx[4](/*dog*/ ctx[0]))) /*removeFromFavorites*/ ctx[4](/*dog*/ ctx[0]).apply(this, arguments);
+    							if (is_function(/*removeFromFavorites*/ ctx[5](/*dog*/ ctx[0]))) /*removeFromFavorites*/ ctx[5](/*dog*/ ctx[0]).apply(this, arguments);
     						},
     						false,
     						false,
@@ -895,7 +894,7 @@ var app = (function () {
     		block,
     		id: create_if_block$4.name,
     		type: "if",
-    		source: "(70:2) {#if extra}",
+    		source: "(71:2) {#if extra}",
     		ctx
     	});
 
@@ -905,6 +904,7 @@ var app = (function () {
     function create_fragment$6(ctx) {
     	let main;
     	let img;
+    	let img_src_value;
     	let t0;
     	let t1;
 
@@ -934,10 +934,12 @@ var app = (function () {
     			if_block1.c();
     			attr_dev(img, "id", "image");
     			attr_dev(img, "alt", "dog");
-    			attr_dev(img, "class", "svelte-ofyw3g");
-    			add_location(img, file$6, 54, 2, 1453);
-    			attr_dev(main, "class", "svelte-ofyw3g");
-    			add_location(main, file$6, 53, 0, 1444);
+    			if (img.src !== (img_src_value = /*dog*/ ctx[0].image.url)) attr_dev(img, "src", img_src_value);
+    			attr_dev(img, "class", "svelte-1gar2bx");
+    			add_location(img, file$6, 55, 2, 1514);
+    			set_style(main, "background-color", /*bg*/ ctx[3]);
+    			attr_dev(main, "class", "svelte-1gar2bx");
+    			add_location(main, file$6, 54, 0, 1473);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -951,6 +953,10 @@ var app = (function () {
     			if_block1.m(main, null);
     		},
     		p: function update(ctx, [dirty]) {
+    			if (dirty & /*dog*/ 1 && img.src !== (img_src_value = /*dog*/ ctx[0].image.url)) {
+    				attr_dev(img, "src", img_src_value);
+    			}
+
     			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block0) {
     				if_block0.p(ctx, dirty);
     			} else {
@@ -973,6 +979,10 @@ var app = (function () {
     					if_block1.c();
     					if_block1.m(main, null);
     				}
+    			}
+
+    			if (dirty & /*bg*/ 8) {
+    				set_style(main, "background-color", /*bg*/ ctx[3]);
     			}
     		},
     		i: noop,
@@ -1001,6 +1011,7 @@ var app = (function () {
     	let { dog } = $$props;
     	let { favorite } = $$props;
     	let { extra } = $$props;
+    	let { bg } = $$props;
 
     	const moreInfo = () => {
     		console.log("see more button clicked");
@@ -1047,7 +1058,7 @@ var app = (function () {
     		dogs.set(newDogs);
     	};
 
-    	const writable_props = ["dog", "favorite", "extra"];
+    	const writable_props = ["dog", "favorite", "extra", "bg"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1$2.warn(`<DogCard> was created with unknown prop '${key}'`);
@@ -1057,6 +1068,7 @@ var app = (function () {
     		if ("dog" in $$props) $$invalidate(0, dog = $$props.dog);
     		if ("favorite" in $$props) $$invalidate(1, favorite = $$props.favorite);
     		if ("extra" in $$props) $$invalidate(2, extra = $$props.extra);
+    		if ("bg" in $$props) $$invalidate(3, bg = $$props.bg);
     	};
 
     	$$self.$capture_state = () => ({
@@ -1066,6 +1078,7 @@ var app = (function () {
     		dog,
     		favorite,
     		extra,
+    		bg,
     		moreInfo,
     		removeFromFavorites,
     		addToFavorites
@@ -1075,19 +1088,20 @@ var app = (function () {
     		if ("dog" in $$props) $$invalidate(0, dog = $$props.dog);
     		if ("favorite" in $$props) $$invalidate(1, favorite = $$props.favorite);
     		if ("extra" in $$props) $$invalidate(2, extra = $$props.extra);
+    		if ("bg" in $$props) $$invalidate(3, bg = $$props.bg);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [dog, favorite, extra, moreInfo, removeFromFavorites, addToFavorites];
+    	return [dog, favorite, extra, bg, moreInfo, removeFromFavorites, addToFavorites];
     }
 
     class DogCard extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$6, create_fragment$6, safe_not_equal, { dog: 0, favorite: 1, extra: 2 });
+    		init(this, options, instance$6, create_fragment$6, safe_not_equal, { dog: 0, favorite: 1, extra: 2, bg: 3 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -1109,6 +1123,10 @@ var app = (function () {
 
     		if (/*extra*/ ctx[2] === undefined && !("extra" in props)) {
     			console_1$2.warn("<DogCard> was created without expected prop 'extra'");
+    		}
+
+    		if (/*bg*/ ctx[3] === undefined && !("bg" in props)) {
+    			console_1$2.warn("<DogCard> was created without expected prop 'bg'");
     		}
     	}
 
@@ -1135,6 +1153,14 @@ var app = (function () {
     	set extra(value) {
     		throw new Error("<DogCard>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
+
+    	get bg() {
+    		throw new Error("<DogCard>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set bg(value) {
+    		throw new Error("<DogCard>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
     }
 
     /* src/components/Dogs.svelte generated by Svelte v3.38.3 */
@@ -1146,7 +1172,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (14:33) 
+    // (11:33) 
     function create_if_block_1$2(ctx) {
     	let each_1_anchor;
     	let current;
@@ -1235,14 +1261,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1$2.name,
     		type: "if",
-    		source: "(14:33) ",
+    		source: "(11:33) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (12:2) {#if $loading === true}
+    // (9:4) {#if $loading === true}
     function create_if_block$3(ctx) {
     	let t;
 
@@ -1265,14 +1291,14 @@ var app = (function () {
     		block,
     		id: create_if_block$3.name,
     		type: "if",
-    		source: "(12:2) {#if $loading === true}",
+    		source: "(9:4) {#if $loading === true}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (15:6) {#each $dogs as dog}
+    // (12:6) {#each $dogs as dog}
     function create_each_block$4(ctx) {
     	let dogcard;
     	let current;
@@ -1318,7 +1344,7 @@ var app = (function () {
     		block,
     		id: create_each_block$4.name,
     		type: "each",
-    		source: "(15:6) {#each $dogs as dog}",
+    		source: "(12:6) {#each $dogs as dog}",
     		ctx
     	});
 
@@ -1329,6 +1355,7 @@ var app = (function () {
     	let main;
     	let h1;
     	let t1;
+    	let div;
     	let current_block_type_index;
     	let if_block;
     	let current;
@@ -1351,9 +1378,12 @@ var app = (function () {
     			h1 = element("h1");
     			h1.textContent = "Dogs List";
     			t1 = space();
+    			div = element("div");
     			if (if_block) if_block.c();
-    			add_location(h1, file$5, 10, 2, 199);
-    			add_location(main, file$5, 9, 0, 190);
+    			add_location(h1, file$5, 6, 2, 118);
+    			attr_dev(div, "class", "svelte-1put6l5");
+    			add_location(div, file$5, 7, 2, 139);
+    			add_location(main, file$5, 5, 0, 109);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1362,9 +1392,10 @@ var app = (function () {
     			insert_dev(target, main, anchor);
     			append_dev(main, h1);
     			append_dev(main, t1);
+    			append_dev(main, div);
 
     			if (~current_block_type_index) {
-    				if_blocks[current_block_type_index].m(main, null);
+    				if_blocks[current_block_type_index].m(div, null);
     			}
 
     			current = true;
@@ -1399,7 +1430,7 @@ var app = (function () {
     					}
 
     					transition_in(if_block, 1);
-    					if_block.m(main, null);
+    					if_block.m(div, null);
     				} else {
     					if_block = null;
     				}
@@ -1449,16 +1480,7 @@ var app = (function () {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Dogs> was created with unknown prop '${key}'`);
     	});
 
-    	$$self.$capture_state = () => ({
-    		each,
-    		DogCard,
-    		loading,
-    		dogs,
-    		get: get_store_value,
-    		$loading,
-    		$dogs
-    	});
-
+    	$$self.$capture_state = () => ({ DogCard, loading, dogs, $loading, $dogs });
     	return [$loading, $dogs];
     }
 
@@ -1979,7 +2001,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (9:2) {#if $dogs.length > 0}
+    // (8:2) {#if $dogs.length > 0}
     function create_if_block$1(ctx) {
     	let div;
     	let current;
@@ -2003,7 +2025,8 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			add_location(div, file$2, 9, 2, 159);
+    			attr_dev(div, "class", "svelte-1put6l5");
+    			add_location(div, file$2, 8, 4, 161);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -2071,14 +2094,14 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(9:2) {#if $dogs.length > 0}",
+    		source: "(8:2) {#if $dogs.length > 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (12:6) {#if dog.isFiltered == true}
+    // (11:8) {#if dog.isFiltered == true}
     function create_if_block_1$1(ctx) {
     	let dogcard;
     	let current;
@@ -2087,7 +2110,8 @@ var app = (function () {
     			props: {
     				extra: false,
     				favorite: /*dog*/ ctx[1].isFavorite,
-    				dog: /*dog*/ ctx[1]
+    				dog: /*dog*/ ctx[1],
+    				bg: "yellow"
     			},
     			$$inline: true
     		});
@@ -2124,14 +2148,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1$1.name,
     		type: "if",
-    		source: "(12:6) {#if dog.isFiltered == true}",
+    		source: "(11:8) {#if dog.isFiltered == true}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (11:4) {#each $dogs as dog}
+    // (10:6) {#each $dogs as dog}
     function create_each_block$1(ctx) {
     	let if_block_anchor;
     	let current;
@@ -2190,7 +2214,7 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(11:4) {#each $dogs as dog}",
+    		source: "(10:6) {#each $dogs as dog}",
     		ctx
     	});
 
@@ -2211,8 +2235,8 @@ var app = (function () {
     			h1.textContent = "Filtered Dogs";
     			t1 = space();
     			if (if_block) if_block.c();
-    			add_location(h1, file$2, 7, 2, 109);
-    			add_location(main, file$2, 6, 0, 100);
+    			add_location(h1, file$2, 6, 2, 109);
+    			add_location(main, file$2, 5, 0, 100);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2313,7 +2337,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (12:2) {#if $favoriteCount != undefined}
+    // (11:4) {#if $favoriteCount != undefined}
     function create_if_block(ctx) {
     	let each_1_anchor;
     	let current;
@@ -2402,14 +2426,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(12:2) {#if $favoriteCount != undefined}",
+    		source: "(11:4) {#if $favoriteCount != undefined}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (14:6) {#if dog.isFavorite == true}
+    // (13:8) {#if dog.isFavorite == true}
     function create_if_block_1(ctx) {
     	let dogcard;
     	let current;
@@ -2418,7 +2442,8 @@ var app = (function () {
     			props: {
     				extra: true,
     				favorite: /*dog*/ ctx[2].isFavorite,
-    				dog: /*dog*/ ctx[2]
+    				dog: /*dog*/ ctx[2],
+    				bg: "lightpink"
     			},
     			$$inline: true
     		});
@@ -2455,14 +2480,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(14:6) {#if dog.isFavorite == true}",
+    		source: "(13:8) {#if dog.isFavorite == true}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (13:4) {#each $dogs as dog}
+    // (12:6) {#each $dogs as dog}
     function create_each_block(ctx) {
     	let if_block_anchor;
     	let current;
@@ -2521,7 +2546,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(13:4) {#each $dogs as dog}",
+    		source: "(12:6) {#each $dogs as dog}",
     		ctx
     	});
 
@@ -2535,6 +2560,7 @@ var app = (function () {
     	let t1;
     	let t2;
     	let t3;
+    	let div;
     	let current;
     	let if_block = /*$favoriteCount*/ ctx[0] != undefined && create_if_block(ctx);
 
@@ -2546,9 +2572,12 @@ var app = (function () {
     			t1 = text(/*$favoriteCount*/ ctx[0]);
     			t2 = text(")");
     			t3 = space();
+    			div = element("div");
     			if (if_block) if_block.c();
-    			add_location(h1, file$1, 10, 2, 202);
-    			add_location(main, file$1, 9, 0, 193);
+    			add_location(h1, file$1, 8, 2, 204);
+    			attr_dev(div, "class", "svelte-1put6l5");
+    			add_location(div, file$1, 9, 2, 253);
+    			add_location(main, file$1, 7, 0, 195);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2560,7 +2589,8 @@ var app = (function () {
     			append_dev(h1, t1);
     			append_dev(h1, t2);
     			append_dev(main, t3);
-    			if (if_block) if_block.m(main, null);
+    			append_dev(main, div);
+    			if (if_block) if_block.m(div, null);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
@@ -2577,7 +2607,7 @@ var app = (function () {
     					if_block = create_if_block(ctx);
     					if_block.c();
     					transition_in(if_block, 1);
-    					if_block.m(main, null);
+    					if_block.m(div, null);
     				}
     			} else if (if_block) {
     				group_outros();
