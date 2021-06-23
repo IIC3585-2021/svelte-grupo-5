@@ -1,47 +1,19 @@
 <script>
   import { each } from "svelte/internal";
   import DogCard from "./DogCard.svelte";
-  let favoriteDogs = [
-    {
-      id: 1,
-      bred_for: "hola",
-      breed_group: "hola",
-      life_span: 12,
-      origin: "USA",
-      temperament: "very angry",
-    },
-    {
-      id: 2,
-      bred_for: "chao",
-      breed_group: "chao",
-      life_span: 21,
-      origin: "Australa",
-      temperament: "very happy",
-    },
-    {
-      id: 3,
-      bred_for: "wena",
-      breed_group: "wena",
-      life_span: 2,
-      origin: "USA",
-      temperament: "funny",
-    },
-    {
-      id: 4,
-      bred_for: "jijij",
-      breed_group: "jijiji",
-      life_span: 10,
-      origin: "Chile",
-      temperament: "sassy",
-    },
-  ];
+  import { favoriteCount, dogs} from '../store.js'
+import { get } from "svelte/store";
+
+
 </script>
 
 <main>
-  <h1>Favorite Dogs List</h1>
-  {#if favoriteDogs.length > 0}
-    {#each favoriteDogs as dog}
-      <DogCard favorite={true} filtered={false} {dog} />
+  <h1>Favorite Dogs List ({$favoriteCount})</h1>
+  {#if $favoriteCount != undefined}
+    {#each $dogs as dog}
+      {#if dog.isFavorite == true}
+        <DogCard extra={true} favorite={dog.isFavorite} {dog} />
+      {/if}
     {/each}
   {/if}
 </main>
