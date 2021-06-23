@@ -1720,7 +1720,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (31:4) {#if filter.applied === true}
+    // (30:4) {#if filter.applied === true}
     function create_if_block$2(ctx) {
     	let div;
     	let t0_value = /*filter*/ ctx[3].name + "";
@@ -1737,8 +1737,8 @@ var app = (function () {
     			t1 = space();
     			button = element("button");
     			button.textContent = "Delete";
-    			add_location(button, file$3, 33, 8, 843);
-    			add_location(div, file$3, 31, 6, 807);
+    			add_location(button, file$3, 32, 8, 822);
+    			add_location(div, file$3, 30, 6, 786);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -1776,14 +1776,14 @@ var app = (function () {
     		block,
     		id: create_if_block$2.name,
     		type: "if",
-    		source: "(31:4) {#if filter.applied === true}",
+    		source: "(30:4) {#if filter.applied === true}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (30:2) {#each $filters as filter}
+    // (29:2) {#each $filters as filter}
     function create_each_block$2(ctx) {
     	let if_block_anchor;
     	let if_block = /*filter*/ ctx[3].applied === true && create_if_block$2(ctx);
@@ -1821,7 +1821,7 @@ var app = (function () {
     		block,
     		id: create_each_block$2.name,
     		type: "each",
-    		source: "(30:2) {#each $filters as filter}",
+    		source: "(29:2) {#each $filters as filter}",
     		ctx
     	});
 
@@ -1858,9 +1858,9 @@ var app = (function () {
     			t2 = space();
     			button = element("button");
     			button.textContent = "Clear All";
-    			add_location(h1, file$3, 28, 2, 713);
-    			add_location(button, file$3, 37, 2, 934);
-    			add_location(main, file$3, 27, 0, 704);
+    			add_location(h1, file$3, 27, 2, 692);
+    			add_location(button, file$3, 36, 2, 913);
+    			add_location(main, file$3, 26, 0, 683);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1950,7 +1950,6 @@ var app = (function () {
 
     	const clearFilters = () => {
     		console.log("clear filters from button");
-    		applied.set([]);
     		let filtersObjects = get_store_value(filters);
 
     		filtersObjects.map(filterObject => {
