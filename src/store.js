@@ -1,7 +1,9 @@
 import { writable, get } from 'svelte/store'
 
+
 var allDogs = []
-var allFilters =  ["Toy", "Working", "Terrier", "Mixed", "Herding", "Non-Sporting", "Hound"]
+var allFilters =  [{name: "Toy", applied: false }, {name: "Working", applied: false}, {name:"Terrier", applied: false}, {name:"Mixed", applied: false}, {name: "Herding", applied: false}, {name: "Non-Sporting", applied: false}, {name:"Hound", applied: false}]
+
 
 
 export const loading = writable(true)
@@ -63,9 +65,9 @@ fetch('https://api.thedogapi.com/v1/breeds')
 .then((data) => {
     allDogs = data
     // DEMO PURPOSES --------------
-    //dogs.set(extendDogObject(exampleDogs))
+    // dogs.set(extendDogObject(exampleDogs))
     // REAL FETCH -----------------
-    dogs.set(extendDogObject(data));
+    //dogs.set(extendDogObject(data));
     loading.set(false)
 })
 
