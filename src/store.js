@@ -6,14 +6,19 @@ var allFilters =  ["Toy", "Working", "Terrier", "Mixed", "Herding", "Non-Sportin
 
 export const loading = writable(true)
 export const dogs = writable(allDogs)
-export const applied = writable([])
 export const filters = writable(allFilters)
 export const favoriteCount = writable(0)
 
 
-applied.subscribe(newFilters => {
+filters.subscribe(newFilters => {
+    var selectedBreeds = []
+    newFilters.forEach(filter => {
+        if(filter.applied == true){
+            selectedBreeds.push(filter.name)
+        }
+    })
     var oldDogs = get(dogs)
-    var updatedDogs = oldDogs.map(dog => dog.isFiltered = newFilters.includes(dog.breed_group))
+    var updatedDogs = oldDogs.map(dog => dog.isFiltered = selectedBreeds.includes(dog.breed_group))
     dogs.set(updatedDogs)
   })
 
