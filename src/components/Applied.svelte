@@ -16,7 +16,6 @@
 
   const clearFilters = () => {
     console.log("clear filters from button");
-    applied.set([]);
     let filtersObjects = get(filters)
     filtersObjects.map(filterObject => {
        filterObject.applied = false; 
