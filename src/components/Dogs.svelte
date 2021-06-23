@@ -1,22 +1,26 @@
 <script>
-  import { each } from "svelte/internal";
   import DogCard from "./DogCard.svelte";
-  import { loading, dogs } from '../store.js'
-  import { get } from "svelte/store";
-
-
+  import { loading, dogs } from "../store.js";
 </script>
 
 <main>
   <h1>Dogs List</h1>
-  {#if $loading === true}
-        Loading Dogs...
+  <div>
+    {#if $loading === true}
+      Loading Dogs...
     {:else if $dogs != undefined}
       {#each $dogs as dog}
-      <DogCard extra={false} favorite={dog.isFavorite} {dog} />
+        <DogCard extra={false} favorite={dog.isFavorite} {dog} />
       {/each}
     {/if}
+  </div>
 </main>
 
 <style>
+  div {
+    display: flex;
+    overflow: scroll;
+    height: auto;
+    width: auto;
+  }
 </style>
